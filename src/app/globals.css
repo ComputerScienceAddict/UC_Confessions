@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/* Old-school Facebook palette */
+:root {
+  --fb-blue: #3b5998;
+  --fb-blue-hover: #2d4373;
+  --fb-bg: #e9eaed;
+  --fb-white: #ffffff;
+  --fb-border: #dddfe2;
+  --fb-border-light: #e4e6eb;
+  --fb-text: #1c1e21;
+  --fb-text-muted: #65676b;
+  --fb-input-bg: #f0f2f5;
+  --background: var(--fb-bg);
+  --foreground: var(--fb-text);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
