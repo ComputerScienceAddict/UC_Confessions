@@ -202,15 +202,16 @@ export function ConfessionPageClient({ id }: { id: string }) {
         ? { ...prev, liked: !prev.liked, likes: Math.max(0, (prev.likes ?? 0) + delta) }
         : prev,
     );
-    await supabase.rpc("increment_confession_likes", {
+    const rpc = await supabase.rpc("increment_confession_likes", {
       p_confession_id: c.id,
       p_delta: delta,
-    }).catch(() => {
-      supabase
+    });
+    if (rpc.error) {
+      await supabase
         .from("confessions")
         .update({ likes_count: Math.max(0, (c.likes ?? 0) + delta) })
         .eq("id", c.id);
-    });
+    }
   }
 
   if (loading) {
